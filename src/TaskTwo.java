@@ -1,11 +1,7 @@
-//package javaone.sem4.market;
-
 import buyerController.Buyer;
-import buyerController.BuyerController;
 import creator.Creator;
 import exceptions.*;
 import product.Product;
-import product.ProductController;
 
 import java.util.*;
 
