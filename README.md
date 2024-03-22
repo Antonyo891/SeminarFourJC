@@ -59,11 +59,60 @@ public class TaskTwo {
     }
 }
 ```
-##### 2. В класс покупателя добавить перечисление с гендерами, добавить в объекты покупателей свойство «пол» со значением созданного перечисления. Добавить геттеры, сеттеры.
-[Gender]()
-##### 3. Добавить перечисление с праздниками (нет праздника, Новый Год, 8 марта, 23 февраля).
-[Holidays]()
-##### 4. В метод оформления заказа добавить параметр - дата заказа (можно сразу использовать значение из перечисления), при создании заказа проверять значение перечисления и пол покупателя. Делать скидку мужчинам - на 23 февраля, женщинам на 8 марта в размере 15%, всем на Новый год в размере 20%. В заказе указывать общую сумму со скидкой.
-[Market]()
+##### 2. В класс покупателя добавить [перечисление](https://github.com/Antonyo891/SeminarFourJC/blob/master/src/buyer/Gender.java) с гендерами, добавить в [объекты покупателей](https://github.com/Antonyo891/SeminarFourJC/blob/master/src/buyer/Buyer.java) свойство «пол» со значением созданного перечисления. Добавить геттеры, сеттеры.
 
+##### 3. Добавить перечисление с праздниками (нет праздника, Новый Год, 8 марта, 23 февраля).
+[Holidays](https://github.com/Antonyo891/SeminarFourJC/blob/master/src/Holidays.java)
+##### 4. В метод оформления заказа добавить параметр - дата заказа (можно сразу использовать значение из перечисления), при создании заказа проверять значение перечисления и пол покупателя. Делать скидку мужчинам - на 23 февраля, женщинам на 8 марта в размере 15%, всем на Новый год в размере 20%. В заказе указывать общую сумму со скидкой.
+[Market](https://github.com/Antonyo891/SeminarFourJC/blob/master/src/Market.java)
+метод buy() оформаляет покупку заказа
+```
+public Map<Product,Integer> buy(int orderId){
+        if (orders.isEmpty()) {
+            System.out.println("List of orders is empty");
+            return null;
+        }
+        for (Order order: orders) {
+            double totalSum;
+            if (orderId==order.getId()) {
+                order.setOrderStatus(OrderStatus.COMPLETED);
+                System.out.print(order.getBuyer().getName() +
+                        " ready to complete the order id= " +
+                        + order.getId() + ". ");
+                System.out.println(order);
+                totalSum = getTotalPrice(order);
+                System.out.println("The buy was completed successfully." +
+                        " Total SUM = " + totalSum +
+                        ". ");
+                return new HashMap<>(order.getProducts());
+            }
+        }
+        System.out.println("This order was not found");
+        return null;
+```
+Метод getTotalPrice(order) считает конечную сумму в зависимости от праздника и пола покупателя
+```
+public double getTotalPrice(Order order){
+        double totalPrice = getPrice(order);
+        if (order.getHoliday()==Holidays.AN_ORDINARY_DAY) return totalPrice;
+        if (order.getHoliday()==Holidays.NEW_YEAR) {
+            System.out.println("HAPPY NEW YEAR. YOUR "+ NEW_YEAR_DISCOUNT +
+                    "% discount% = " + totalPrice*(NEW_YEAR_DISCOUNT*1.00/100));
+            return totalPrice * (1 - NEW_YEAR_DISCOUNT*1.00/100);
+        }
+        if ((order.getHoliday()==Holidays.MANS_DAY)&&(order.getBuyer().getGender()== Gender.MAN)) {
+
+            System.out.println("HAPPY MANS DAY. YOUR" + MANS_WOMANS_DISCOUNT + "% discount% = " +
+                    totalPrice*(MANS_WOMANS_DISCOUNT*1.00/100));
+            return totalPrice*(1 -MANS_WOMANS_DISCOUNT*1.00/100);
+        }
+        if ((order.getHoliday()==Holidays.WOMANS_DAY)&&(order.getBuyer().getGender()== Gender.WOMAN)) {
+
+            System.out.println("HAPPY WOMANS DAY. YOUR " + MANS_WOMANS_DISCOUNT + "% discount% = " +
+                    totalPrice*(MANS_WOMANS_DISCOUNT*1.00/100));
+            return totalPrice*(1 -MANS_WOMANS_DISCOUNT*1.00/100);
+        }
+        return totalPrice;
+    }
+```
 ##### (*) любые доработки в магазин на Ваше усмотрение - описать в readme либо в тексте к ПЗ
