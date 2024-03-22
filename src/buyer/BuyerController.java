@@ -1,4 +1,4 @@
-package buyerController;
+package buyer;
 
 import exceptions.NameIsEmptyException;
 import exceptions.AgeNegativeException;

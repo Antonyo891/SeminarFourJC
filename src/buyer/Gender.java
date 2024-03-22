@@ -1,4 +1,4 @@
-package buyerController;
+package buyer;
 
 public enum Gender {
     MAN,

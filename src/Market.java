@@ -1,11 +1,9 @@
-import buyerController.Buyer;
-import buyerController.BuyerController;
-import buyerController.Gender;
+import buyer.Buyer;
+import buyer.Gender;
 import exceptions.ProductNotFoundException;
 import exceptions.QuantityIsNegativeException;
 import exceptions.UserNotFoudException;
 import product.Product;
-import product.ProductController;
 
 import java.util.*;
 

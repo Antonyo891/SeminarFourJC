@@ -1,8 +1,8 @@
 package creator;
 
-import buyerController.Buyer;
-import buyerController.BuyerController;
-import buyerController.Gender;
+import buyer.Buyer;
+import buyer.BuyerController;
+import buyer.Gender;
 import exceptions.AgeNegativeException;
 import exceptions.NameIsEmptyException;
 import exceptions.ProductPriceException;

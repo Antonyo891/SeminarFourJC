@@ -1,4 +1,4 @@
-import buyerController.Buyer;
+import buyer.Buyer;
 import product.Product;
 
 import java.util.HashMap;

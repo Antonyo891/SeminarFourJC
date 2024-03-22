@@ -1,4 +1,4 @@
-import buyerController.Buyer;
+import buyer.Buyer;
 import creator.Creator;
 import exceptions.*;
 import product.Product;

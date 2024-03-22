@@ -1,4 +1,4 @@
-package buyerController;
+package buyer;
 
 import java.util.Objects;
 
