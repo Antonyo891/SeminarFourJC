@@ -1,3 +1,6 @@
+import buyerController.Buyer;
+import product.Product;
+
 import java.util.HashMap;
 import java.util.Map;
 

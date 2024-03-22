@@ -1,6 +1,10 @@
+import buyerController.Buyer;
+import buyerController.BuyerController;
 import exceptions.ProductNotFoundException;
 import exceptions.QuantityIsNegativeException;
 import exceptions.UserNotFoudException;
+import product.Product;
+import product.ProductController;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -13,21 +17,20 @@ public class Market {
     private List<Product> products;
     private List<Order> orders;
 
+    public Market(List<Buyer> buyers, List<Product> products, List<Order> orders) {
+        this.buyers = buyers;
+        this.products = products;
+        this.orders = orders;
+    }
+
+    public Market(List<Buyer> buyers, List<Product> products) {
+        this(buyers,products,new ArrayList<>());
+    }
 
     public Market() {
-        buyers = new ArrayList<>();
-        buyers.add(new Buyer("Tom", 45, "11111"));
-        buyers.add(new Buyer("Bob", 26, "22222"));
-        buyers.add(new Buyer("Jim", 53, "33333"));
-        buyers.add(new Buyer("John", 40, "44444"));
-
-        products = new ArrayList<>();
-        products.add(new Product("Milk", 89));
-        products.add(new Product("Bread", 26));
-        products.add(new Product("Cheese", 125));
-
-        orders = new ArrayList<>();
+        this(new ArrayList<>(),new ArrayList<>(),new ArrayList<>());
     }
+
 
     public int createOrder(Buyer buyer) throws UserNotFoudException {
         if (!buyers.contains(buyer)) throw new UserNotFoudException("user not found, " + buyer);
@@ -41,7 +44,7 @@ public class Market {
         if (orders.isEmpty()) return 1;
         int newId = 1;
         for (Order order:orders) {
-            if (order.getId()>newId) newId=order.getId();
+            if (order.getId()>=newId) newId=order.getId();
         }
         return newId+1;
     }

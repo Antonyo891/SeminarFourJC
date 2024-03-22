@@ -1,18 +1,23 @@
+package buyerController;
+
 import java.util.Objects;
 
 public class Buyer {
     private String name;
     private int age;
+
+    private int id;
     private String phone;
 
-    public Buyer(String name, int age, String phone) {
+    Buyer(int id, String name, int age, String phone) {
+        this.id = id;
         this.name = name;
         this.age = age;
         this.phone = phone;
     }
 
-    public Buyer(Buyer buyer) {
-        this(buyer.getName(), buyer.getAge(), buyer.getPhone());
+   Buyer(Buyer buyer) {
+        this(buyer.getId(), buyer.getName(), buyer.getAge(), buyer.getPhone());
     }
 
     public String getName() {
@@ -33,6 +38,10 @@ public class Buyer {
 
     public String getPhone() {
         return phone;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public void setPhone(String phone) {
