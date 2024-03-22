@@ -9,7 +9,7 @@ public class TaskTwo {
     public static final int QUANTITY_PURCHASE = 3;
     public static final int MAX_QUANTITY = 3;
 
-    public static final int POSSIBILITI_OF_QUANTITY_EXCEPTION = 1;
+    public static final int POSSIBILITI_OF_QUANTITY_EXCEPTION = 0;
 
 
     public static void main(String[] args) {
@@ -29,7 +29,7 @@ public class TaskTwo {
                 buyer = market.getBuyers().get(i);//take buyer from market
                 ordersId = market.createOrder(buyer);// create new order for buyer
                 randomise = new Random().nextInt(MAX_QUANTITY)-
-                        POSSIBILITI_OF_QUANTITY_EXCEPTION+i; //random QUANTITY products
+                        POSSIBILITI_OF_QUANTITY_EXCEPTION+i+1; //random QUANTITY products
                 do {
                     randomiseTypeProduct =new Random().nextInt(market.getProducts().size()+1);//to fill the order
                 } while (randomiseTypeProduct<1);

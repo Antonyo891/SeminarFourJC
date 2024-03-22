@@ -2,6 +2,7 @@ package creator;
 
 import buyerController.Buyer;
 import buyerController.BuyerController;
+import buyerController.Gender;
 import exceptions.AgeNegativeException;
 import exceptions.NameIsEmptyException;
 import exceptions.ProductPriceException;
@@ -40,10 +41,10 @@ public class Creator {
 
     public void createBuyer() {
         try {
-            buyerController.createBuyer("Tom", 45, "11111");
-            buyerController.createBuyer("Bob", 26, "22222");
-            buyerController.createBuyer("Jim", 53, "33333");
-            buyerController.createBuyer("John", 40, "44444");
+            buyerController.createBuyer("Tom", 45, "11111", Gender.MAN);
+            buyerController.createBuyer("Liss", 26, "22222", Gender.WOMAN);
+            buyerController.createBuyer("Jim", 53, "33333", Gender.MAN);
+            buyerController.createBuyer("John", 40, "44444", Gender.MAN);
             System.out.println("Buyers was created successful");
         }
         catch (AgeNegativeException e){

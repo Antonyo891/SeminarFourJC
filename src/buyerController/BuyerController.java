@@ -24,10 +24,10 @@ private ArrayList<Buyer> buyers;
             return false;
         }
         return addBuyer(buyer.getId(),buyer.getName(),
-                buyer.getAge(),buyer.getPhone());
+                buyer.getAge(),buyer.getPhone(),buyer.getGender());
     }
 
-    public boolean addBuyer(int idBuyer, String name, int age, String phone)
+    public boolean addBuyer(int idBuyer, String name, int age, String phone,Gender gender)
             throws AgeNegativeException, NameIsEmptyException {
         if (age<0) throw new AgeNegativeException(age);
         if (name.isEmpty()) throw  new NameIsEmptyException(
@@ -41,15 +41,15 @@ private ArrayList<Buyer> buyers;
                 return false;
             }
         }
-        buyers.add(new Buyer(idBuyer, name, age, phone));
+        buyers.add(new Buyer(idBuyer, name, age, phone, gender));
         System.out.println("There are" + buyers.size() + " buyers in the Market.");
         return true;
     }
 
-    public Buyer createBuyer(String name, int age, String phone)
+    public Buyer createBuyer(String name, int age, String phone, Gender gender)
             throws AgeNegativeException, NameIsEmptyException {
         int buyerId = newBuyerId();
-        addBuyer(buyerId,name,age,phone);
+        addBuyer(buyerId,name,age,phone, gender);
         return getBuyer(buyerId);
     }
 
@@ -64,6 +64,15 @@ private ArrayList<Buyer> buyers;
 
     public ArrayList<Buyer> getBuyers() {
         return buyers;
+    }
+
+    public void setGender(int buyerId, Gender gender){
+        Buyer buyer = getBuyer(buyerId);
+        if (buyer.getGender()==Gender.UNSPECIFIED)
+            buyer.setGender(gender);
+        else System.out.println("Gender for " +
+                buyer.getName() + " already set by nature("+
+                buyer.getGender() + ").");
     }
 
     public Buyer getBuyer(int buyerId){

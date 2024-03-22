@@ -6,18 +6,25 @@ public class Buyer {
     private String name;
     private int age;
 
+    private Gender gender;
+
     private int id;
     private String phone;
 
-    Buyer(int id, String name, int age, String phone) {
+    Buyer(int id, String name, int age, String phone,Gender gender) {
         this.id = id;
         this.name = name;
         this.age = age;
         this.phone = phone;
+        this.gender = gender;
+    }
+    Buyer(int id, String name, int age, String phone) {
+        this(id,name,age,phone,Gender.UNSPECIFIED);
     }
 
    Buyer(Buyer buyer) {
-        this(buyer.getId(), buyer.getName(), buyer.getAge(), buyer.getPhone());
+        this(buyer.getId(), buyer.getName(),
+                buyer.getAge(), buyer.getPhone(),buyer.getGender());
     }
 
     public String getName() {
@@ -48,11 +55,21 @@ public class Buyer {
         this.phone = phone;
     }
 
+    public Gender getGender() {
+        return gender;
+    }
+
+    void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
     @Override
     public String toString() {
-        return "User{" +
+        return "Buyer{" +
                 "name='" + name + '\'' +
                 ", age=" + age +
+                ", gender=" + gender +
+                ", id=" + id +
                 ", phone='" + phone + '\'' +
                 '}';
     }
